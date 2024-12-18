@@ -11,6 +11,7 @@ const userSchema = new Schema<TUser>({
       values: ['admin', 'user'],
       message: '{VALUE} is not supported',
     },
+    default: 'user',
   },
   isBlocked: { type: Boolean, default: false },
 });
