@@ -27,21 +27,22 @@ class QueryBuilder<T> {
   filter() {
     const queryObj = { ...this.query };
     // console.log('before delete',queryObj);
-    const excludeFields = ['search', 'sortBy'];
+    const excludeFields = ['search', 'sortBy', 'sortOrder'];
     excludeFields.forEach((el) => delete queryObj[el]);
     // console.log('after delete', queryObj)
     if (queryObj.filter) {
-        queryObj.author = new mongoose.Types.ObjectId(queryObj.filter as string);
-        delete queryObj.filter
-      }
+      queryObj.author = new mongoose.Types.ObjectId(queryObj.filter as string);
+      delete queryObj.filter;
+    }
     this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
     return this;
   }
 
   sortBy() {
-    const sortBy =
-      (this?.query?.sortBy as string)?.split(',')?.join(' ') || '-createrAt';
-    this.modelQuery = this.modelQuery.sort(sortBy as string);
+    const sortBy = (this?.query?.sortBy as string) || 'createdAt';
+    const sortOrder = this?.query?.sortOrder === 'asc' ? '' : '-';
+    const sort = `${sortOrder}${sortBy}`;
+    this.modelQuery = this.modelQuery.sort(sort);
     return this;
   }
 }
