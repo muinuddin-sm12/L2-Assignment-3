@@ -2,6 +2,7 @@ import cors from 'cors';
 import express, { Application } from 'express';
 import router from './app/router';
 import notFound from './app/middlewares/notFound';
+import globalErrorHandler from './app/middlewares/globalErrorHnadler';
 
 const app: Application = express();
 
@@ -16,7 +17,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to L-2 Assignmet-3')
 })
 // global error handle 
-
+app.use(globalErrorHandler)
 
 // not found 
 app.use(notFound);
