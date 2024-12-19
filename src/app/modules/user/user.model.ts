@@ -14,6 +14,6 @@ const userSchema = new Schema<TUser>({
     default: 'user',
   },
   isBlocked: { type: Boolean, default: false },
-});
+}, {timestamps: true});
 
 export const User = model<TUser>('User', userSchema);
