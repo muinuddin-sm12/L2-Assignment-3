@@ -12,7 +12,17 @@ const register = catchAsync(async(req: Request, res:Response) => {
         data: result,
     })
 })
+const login = catchAsync(async (req: Request, res: Response) => {
+    const result = await AuthServices.login(req.body);
+    res.status(httpStatus.OK).json({
+        success: true,
+        message: 'Login successful',
+        statusCode: httpStatus.OK,
+        data: result,
+    })
+  })
 
 export const AuthController = {
     register,
+    login
 }
