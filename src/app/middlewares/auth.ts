@@ -25,7 +25,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
 
     const user = await User.findOne({ email });
 
-    console.log('user from auth', user);
+    // console.log('user from auth', user);
     if (!user) {
       throw new AppError(httpStatus.NOT_FOUND, 'User is not found!');
     }
