@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Response } from "express";
+import config from "../config";
 
 export const handleZodError = (err: any, res: Response) => {
     const issues = err.issues.map((item: any) => {
@@ -12,6 +13,7 @@ export const handleZodError = (err: any, res: Response) => {
         success: false,
         message: err.message,
         issues,
-        error: err
+        error: err,
+        stack: config.node_env === 'development' ? err.stack : undefined,
     })
 }

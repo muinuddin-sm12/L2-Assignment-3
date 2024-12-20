@@ -15,8 +15,18 @@ const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
   const result = await blogQuery.modelQuery;
   return result;
 };
+const updateBlog = async (id: string, payload:Partial<TBlog>)=> {
+    const result = await Blog.findByIdAndUpdate(id, payload , {new:true}).populate('author');
+    return result;
+}
+const deleteBlog = async(id:string) => {
+    const result= await Blog.findByIdAndDelete(id, {new:true});
+    return result 
+}
 
 export const BlogServices = {
   createBlogIntoDB,
   getAllBlogsFromDB,
+  updateBlog,
+  deleteBlog
 };

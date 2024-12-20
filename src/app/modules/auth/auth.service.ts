@@ -1,4 +1,6 @@
+import httpStatus from 'http-status';
 import config from '../../config';
+import AppError from '../../errors/AppError';
 import { TUser } from '../user/user.interface';
 import { User } from '../user/user.model';
 import bcrypt from 'bcrypt';
@@ -23,7 +25,7 @@ const login = async (payload: { email: string; password: string }) => {
     user?.password,
   );
   if (!isPasswordMatched) {
-    throw new Error('Password is wrong!');
+    throw new AppError(httpStatus.BAD_REQUEST, 'Invalid Credentials');
   }
 
   const jwtPayload = {
