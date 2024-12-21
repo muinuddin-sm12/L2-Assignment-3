@@ -108,13 +108,7 @@ Manually create an Admin user in the database with the following structure:
 
 
 ## 🚀 Live Deployment
-[Live API Server](<your-live-url>)
-
----
-
-## 🔑 Admin Credentials
-- **Email:** shakil@gmail.com
-- **Password:** 123456
+[Live API Server](<https://l2-assignment-3-eosin.vercel.app/>)
 
 ---
 
